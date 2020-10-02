@@ -2,24 +2,28 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:dubbo="http://dubbo.apache.org/schema/dubbo"
+       xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
        http://dubbo.apache.org/schema/dubbo
-       http://dubbo.apache.org/schema/dubbo/dubbo.xsd">
+       http://dubbo.apache.org/schema/dubbo/dubbo.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+
+    <context:component-scan base-package="service.impl" />
 
     <!-- 提供方应用信息，用于计算依赖关系 -->
-    <dubbo:application name="order-service-provider" />
+    <dubbo:application name="order-service-consumer" />
 
     <!-- 制定注册中心的位置 -->
     <!--<dubbo:registry address="zookeeper://127.0.0.1:2181" />-->
     <dubbo:registry protocol="zookeeper" address="127.0.0.1:2181" />
 
-    <!-- 用dubbo协议在20880端口暴露服务 -->
-    <dubbo:protocol name="dubbo" port="20880" />
+    <!--声明需要调用的远程服务的接口，生成远端服务代理-->
+    <dubbo:reference interface="service.UserService" id="userService" />
 
-    <!-- 声明需要暴露的服务接口 -->
-    <dubbo:service interface="service.UserService" ref="userService" />
+    <!--监控中心配置-->
+    <dubbo:monitor protocol="registry" />
+    <!--<dubbo:monitor address="" />-->
 
-    <!-- 和本地bean一样实现服务 -->
-    <bean id="userService" class="service.impl.UserServiceImpl" />
 </beans>

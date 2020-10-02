@@ -22,4 +22,7 @@
 
     <!-- 和本地bean一样实现服务 -->
     <bean id="userService" class="service.impl.UserServiceImpl" />
+
+    <!--监控中心配置-->
+    <dubbo:monitor protocol="registry" />
 </beans>

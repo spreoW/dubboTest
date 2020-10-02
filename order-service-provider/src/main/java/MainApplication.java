@@ -1,0 +1,15 @@
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import java.io.IOException;
+
+/**
+ * @author w
+ * @date 2020/10/1
+ */
+public class MainApplication {
+    public static void main(String[] args) throws IOException {
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("provider.xml");
+        context.start();
+        System.in.read();
+    }
+}

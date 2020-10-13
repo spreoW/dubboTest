@@ -1,13 +1,19 @@
 package service;
 
+import bean.UserAddress;
+
+import java.util.List;
+
 /**
  * @author w
  * @date 2020/10/1
  */
 public interface OrderService {
+
     /**
-     * ≥ı ºªØ∂©µ•
+     *
      * @param userId
+     * @return
      */
-    public void initOrder(String userId);
+    List<UserAddress> initOrder(String userId);
 }

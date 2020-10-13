@@ -20,10 +20,11 @@ public class OrderServiceImpl implements OrderService {
     UserService userService;
 
     @Override
-    public void initOrder(String userId) {
+    public List<UserAddress> initOrder(String userId) {
         List<UserAddress> userAddressList = userService.getUserAddressList(userId);
         for (UserAddress address : userAddressList) {
             System.out.println(address.getUserAddress());
         }
+        return userAddressList;
     }
 }

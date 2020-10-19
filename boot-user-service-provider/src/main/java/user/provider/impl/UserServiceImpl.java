@@ -12,6 +12,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public List<UserAddress> getUserAddressList(String userId) {
+		System.out.println("UserServiceImpl.....3");
 		UserAddress address1 = new UserAddress(1,"余杭","1","张三","123456","Y");
 		UserAddress address2 = new UserAddress(2,"江干","1","李四","56789","N");
 		return Arrays.asList(address1,address2);
